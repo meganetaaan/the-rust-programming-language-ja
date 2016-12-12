@@ -1,14 +1,12 @@
 % パターン
 <!-- % Patterns -->
 
-<!-- Patterns are quite common in Rust. -->
+<!-- Patterns are quite common in Rust. We use them in [variable -->
+<!-- bindings][bindings], [match statements][match], and other places, too. Let’s go -->
+<!-- on a whirlwind tour of all of the things patterns can do!-->
 パターンはRustにおいて極めて一般的です。
-
-<!-- We use them in [variable
-bindings][bindings], [match statements][match], and other places, too.-->
 パターンは [変数束縛][bindings], [マッチ文][match] などで使われています。
 
-<!--Let’s go on a whirlwind tour of all of the things patterns can do!-->
 さあ、めくるめくパターンの旅を始めましょう！
 
 [bindings]: variable-bindings.html
@@ -32,7 +30,8 @@ match x {
 <!-- This prints `one`. -->
 これは `one` を表示します。
 
-<!-- There’s one pitfall with patterns: like anything that introduces a new binding,they introduce shadowing. For example: -->
+<!-- There’s one pitfall with patterns: like anything that introduces a new binding, -->
+<!-- they introduce shadowing. For example: -->
 パターンには一つ落とし穴があります。新しい束縛を導入すると、他の束縛を導入するものと同じように、シャドーイングします。例えば：
 
 ```rust
@@ -54,9 +53,9 @@ x: c c: c
 x: x
 ```
 
-<!-- In other words, `x =>` matches the pattern and introduces a new binding named
-`x` that’s in scope for the match arm. Because we already have a binding named
-`x`, this new `x` shadows it. -->
+<!-- In other words, `x =>` matches the pattern and introduces a new binding named -->
+<!-- `x` that’s in scope for the match arm. Because we already have a binding named -->
+<!-- `x`, this new `x` shadows it. -->
 別の言い方をすると、 `x =>` はパターンへのマッチだけでなく、マッチの腕内で有効な `x` という名前の束縛を導入します。既に `x` は束縛されていたので、この新しい `x` はそれを覆い隠します。
 
 <!-- # Multiple patterns -->
@@ -82,8 +81,8 @@ match x {
 <!-- # Destructuring -->
 # デストラクチャリング
 
-<!-- If you have a compound data type, like a [`struct`][struct], you can destructure it
-inside of a pattern: -->
+<!-- If you have a compound data type, like a [`struct`][struct], you can destructure it -->
+<!-- inside of a pattern: -->
 例えば [`struct`][struct] のような複合データ型を作成したいとき、パターン内でデータを分解することができます。
 
 ```rust
@@ -166,9 +165,8 @@ match origin {
 # 束縛の無視
 
 <!-- You can use `_` in a pattern to disregard the type and value.-->
-パターン内の型や値を無視するために `_` を使うことができます。
-
 <!-- For example, here’s a `match` against a `Result<T, E>`: -->
+パターン内の型や値を無視するために `_` を使うことができます。
 例として、 `Result<T, E>` に対して `match` を適用してみましょう：
 
 ```rust
@@ -179,14 +177,16 @@ match some_value {
 }
 ```
 
-<!-- In the first arm, we bind the value inside the `Ok` variant to `value`. But
-in the `Err` arm, we use `_` to disregard the specific error, and just print
-a general error message. -->
-最初の部分では `Ok` ヴァリアント内の値を `value` に結びつけています。しかし `Err` 部分では、特定のエラーを避けて、標準的なエラーメッセージを表示するために `_` を使っています。
+<!-- In the first arm, we bind the value inside the `Ok` variant to `value`. But -->
+<!-- in the `Err` arm, we use `_` to disregard the specific error, and just print -->
+<!-- a general error message. -->
+最初の部分では `Ok` ヴァリアント内の値を `value` に結びつけています。
+しかし `Err` 部分では、特定のエラーを避けて、標準的なエラーメッセージを表示するために `_` を使っています。
 
-<!-- `_` is valid in any pattern that creates a binding. This can be useful to
-ignore parts of a larger structure: -->
-`_` は束縛を伴うどんなパターンにおいても有効です。これは大きな構造の一部分を無視する際に有用です。
+<!-- `_` is valid in any pattern that creates a binding. This can be useful to -->
+<!-- ignore parts of a larger structure: -->
+`_` は束縛を伴うどんなパターンにおいても有効です。
+これは大きな構造の一部分を無視する際に有用です。
 
 ```rust
 fn coordinate() -> (i32, i32, i32) {
@@ -244,7 +244,8 @@ match x {
 <!-- Here, the `r` inside the `match` has the type `&i32`. In other words, the `ref`
 keyword _creates_ a reference, for use in the pattern. If you need a mutable
 reference, `ref mut` will work in the same way: -->
-ここで `match` 内の `r` は `&i32` 型を持っています。言い換えると `ref` キーワードがリファレンスを _作ります_ 。
+ここで `match` 内の `r` は `&i32` 型を持っています。
+言い換えると `ref` キーワードがリファレンスを _作ります_ 。
 
 ```rust
 let mut x = 5;
